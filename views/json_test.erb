@@ -1,0 +1,62 @@
+
+<h2>Testing this stuff</h2>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.4/jquery.js"></script>
+
+
+<script type="text/javascript">
+
+
+var theDataObject = {}
+
+
+$('document').ready(function() {
+  console.log('In the javascript')
+
+  var api_urls = [
+    "/kitten",
+    "/alligator",
+    "/t-rex",
+    "/musician",
+    "/brook_trout"
+  ];
+  console.log(api_urls.length);
+  for (var i=0; i < api_urls.length; i++)
+  {
+    console.log(i);
+    $.ajax(
+      {
+        url: api_urls[i],
+        type: 'get',
+        success: function(data) {
+          console.log('success!');
+          console.log('data: ' + data);
+          console.log('typeof data: ' + typeof data)
+          // put it in a global variable
+          theDataObject = JSON.parse(data);
+          console.log('parsed data: ' + theDataObject)
+          console.log(theDataObject.name)
+          console.log(theDataObject.picture_url)
+
+          var theImg = $('<img class="animal_img">');
+          $(theImg).prop('src', theDataObject.picture_url);
+          console.log('theImg: ' + theImg);
+          $('body').append(theImg);
+        },
+        error: function(data) {
+          console.log('error!');
+          // theDataDiv.append('Error loading the data');
+        }
+      }
+    ); // close $.ajax
+
+  }
+
+
+
+
+
+}); // close $('document').ready()
+
+
+
+</script>

@@ -1,0 +1,10 @@
+body {
+  font-family: sans-serif;
+}
+
+.animal_img {
+
+  width: 150px;
+  border: 1px solid grey;
+  border-radius: 20%;
+}
